@@ -1,0 +1,102 @@
+/* css variables */
+:root {
+  --body-color: grey;
+  --white: white;
+  --black: #000000;
+  --france-blue: #012395;
+  --france-red: #ed2939;
+  --german-red: #dd0100;
+  --german-yellow: #ffce00;
+  --madagascar-red: #fc3d32;
+  --madagascar-green: #007e3a;
+  --switzerland-red: #ff0000;
+  --sweden-purple: #016aa7;
+  --sweden-gold: #fecc00;
+  --gambia-red: #ce1227;
+  --gambia-blue: #0c1d8c;
+  --gambia-green: #3a7728;
+  --tonga-red: #c10001;
+  --japan-red: #bc012d;
+  --greece-blue: #0e5eaf;
+  --niger-brown: #e05206;
+  --niger-green: #0cb02b;
+  --maldives-maroon: #d11134;
+  --maldives-green: #007e3a;
+  --belize-blue: #023f87;
+  --belize-red: #ce1226;
+}
+
+/* removed some of the presets */
+/* The * means "all elements" (a universal selector), so we are setting all elements to have zero margins, and zero padding, thus making them look the same in all browsers */
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  /* border: 2px solid red; */
+}
+body {
+  margin: 20px;
+  background-color: var(--france-red);
+}
+/* absolute */
+.gimme-space {
+  position: absolute;
+  width: 20%;
+  float: center;
+  border: 2px solid black;
+  margin-left: 150px;
+  padding: 10px;
+}
+
+/* resetting preset button styles */
+button {
+  padding: 0;
+  font-size: 10px;
+  font-weight: bolder;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.btn1,
+.btn2,
+.btn3 {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  background-color: skyblue;
+  /* create a small space when buttons wrap on 2 lines */
+  margin: 10px 0px;
+  /* invisible border (will be colored on hover/focus) */
+  border: solid 1px transparent;
+  border-radius: 4px;
+  /* size comes from text & padding (no width/height) */
+  color: #ffffff;
+  background-color: #9555af;
+  /* line-height: 1px; */
+}
+
+/* change the way the button styles on hover */
+button:hover {
+  color: var(--black);
+}
+
+/* when button is clicked  */
+button:active {
+  /* moves down */
+  transform: translateY(1px);
+  /* how bright it glows on click */
+  filter: saturate(250%);
+
+  color: black;
+
+  border-color: currentColor;
+
+  background-color: white;
+}
+button:hover,
+button:focus {
+  color: #9555af;
+  border-color: currentColor;
+  background-color: white;
+  outline: none;
+}
