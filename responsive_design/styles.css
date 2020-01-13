@@ -5,7 +5,7 @@
   font-family: sans-serif;
   font-weight: lighter;
 }
-
+/* mobile design */
 #box {
   border: 2px solid black;
 }
@@ -14,12 +14,33 @@
   background-color: dodgerblue;
 }
 
-@media (min-width: 400px) {
+/* ONLY the styles i tell to change actually change with media queries */
+
+/* media only for the screen with the width of 400px or larger */
+/* Large phones */
+@media only screen and (min-width: 400px) {
   #box {
     border: 2px dashed green;
   }
 
   #box > h1 {
     background-color: firebrick;
+  }
+}
+
+/* tablet */
+@media only screen and (min-width: 650px) {
+  #box {
+    border: 5px dashed purple;
+  }
+
+  #box > h1 {
+    background-color: cornflowerblue;
+  }
+}
+
+@media only screen and (min-width: 650px) and (max-width: 700px) {
+  body {
+    background-color: yellow;
   }
 }
