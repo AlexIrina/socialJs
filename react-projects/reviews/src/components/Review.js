@@ -7,9 +7,16 @@ export default function Review() {
 	// accessing the person in the array by its index
 	const { name, job, image, text } = reviewsData[index]
 
-	const viewPrevPerson = () => {}
-	const viewNextPerson = () => {}
-	const viewRandomPerson = () => {}
+	const viewPrevPerson = () => {
+		setIndex(prevIndex => prevIndex + 1)
+	}
+	const viewNextPerson = () => {
+		setIndex(prevIndex => prevIndex - 1)
+	}
+	const viewRandomPerson = () => {
+		const random = Math.floor(Math.random() * reviewsData.length)
+		setIndex(random)
+	}
 
 	return (
 		<article className='review'>
@@ -23,14 +30,16 @@ export default function Review() {
 			<p className='job'>{job}</p>
 			<p className='info'>{text}</p>
 			<div className='button-container'>
-				<button className='prev-btn'>
+				<button className='prev-btn' onClick={viewPrevPerson}>
 					<FaChevronLeft />
 				</button>
-				<button className='next-btn'>
+				<button className='next-btn' onClick={viewNextPerson}>
 					<FaChevronRight />
 				</button>
 			</div>
-			<button className='random-btn'>Surprise me</button>
+			<button className='random-btn' onClick={viewRandomPerson}>
+				Surprise me
+			</button>
 		</article>
 	)
 }
