@@ -1,26 +1,18 @@
 import React, { useState } from 'react'
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 
-export default function Question() {
+export default function Question({ title, info }) {
+	const [readMore, setReadMore] = useState(false)
+
 	return (
-		<div className='question'>
+		<article className='question'>
+			<h4>{title}</h4>
 			<header>
-				<h4>text</h4>
-				<p>
-					Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam
-				</p>
+				<p>{readMore ? info : `${info.substring(0, 0)}...`}</p>
+				<button onClick={() => setReadMore(!readMore)}>
+					{readMore ? <AiOutlineMinus /> : <AiOutlinePlus />}
+				</button>
 			</header>
-			<button className='btn'>
-				<AiOutlineMinus />
-			</button>
-			<button className='btn'>
-				<AiOutlinePlus />
-			</button>
-		</div>
+		</article>
 	)
 }
-/*
-    id: 1,
-		title: 'Do I have to allow the use of cookies?',
-		info: 'Unicorn vinyl poutine brooklyn, next level direct trade iceland. Shaman copper mug church-key coloring book, whatever poutine normcore fixie cred kickstarter post-ironic street art.',
-*/

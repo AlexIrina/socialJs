@@ -1,15 +1,23 @@
-import React from 'react'
+import { useState } from 'react'
 import data from './data/qaData'
 import SingleQuestion from './components/Question'
 
 export default function App() {
+	const [questions, setQuestions] = useState(data)
 	return (
 		<main>
-			<section className='container'>
-				<h3>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, rem.
-				</h3>
-			</section>
+			<div className='container'>
+				<h3>Frequently asked questions about login</h3>
+				<section className='info'>
+					{questions.map(question => (
+						<SingleQuestion
+							key={question.id}
+							{...question}
+							updateQuestions={setQuestions}
+						/>
+					))}
+				</section>
+			</div>
 		</main>
 	)
 }
