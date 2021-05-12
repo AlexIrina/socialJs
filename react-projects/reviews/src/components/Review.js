@@ -7,11 +7,20 @@ export default function Review() {
 	// accessing the person in the array by its index
 	const { name, job, image, text } = reviewsData[index]
 
+	// getting and error when index is greater than the length of the array ...3
+	const checkNumber = number => {
+		// if number is greater than the last number in the array return the first item in the array
+		if (number > reviewsData.length - 1) return 0
+		// if number is less than 0 then return the last item in the array
+		if (number < 0) return reviewsData.length - 1
+		return number
+	}
+
 	const viewPrevPerson = () => {
-		setIndex(prevIndex => prevIndex + 1)
+		setIndex(prevIndex => checkNumber(prevIndex - 1))
 	}
 	const viewNextPerson = () => {
-		setIndex(prevIndex => prevIndex - 1)
+		setIndex(prevIndex => checkNumber(prevIndex - 1))
 	}
 	const viewRandomPerson = () => {
 		const random = Math.floor(Math.random() * reviewsData.length)
