@@ -23,8 +23,12 @@ export default function Review() {
 		setIndex(prevIndex => checkNumber(prevIndex - 1))
 	}
 	const viewRandomPerson = () => {
-		const random = Math.floor(Math.random() * reviewsData.length)
-		setIndex(random)
+		let random = Math.floor(Math.random() * reviewsData.length)
+		// wont get the same random person in a row
+		if (random === index) {
+			random = index + 1
+		}
+		setIndex(checkNumber(random))
 	}
 
 	return (
