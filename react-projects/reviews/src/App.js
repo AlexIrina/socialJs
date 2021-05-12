@@ -1,8 +1,15 @@
 import Review from './components/Review'
+
 export default function App() {
 	return (
-		<h2>
-			<Review />
-		</h2>
+		<main>
+			<section className='container'>
+				<div className='title'>
+					<h2>our reviews</h2>
+					<div className='underline'></div>
+				</div>
+				<Review />
+			</section>
+		</main>
 	)
 }

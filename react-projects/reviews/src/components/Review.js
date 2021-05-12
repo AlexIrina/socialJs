@@ -3,14 +3,34 @@ import reviewsData from '../data/reviewsData'
 import { FaChevronLeft, FaChevronRight, FaQuoteRight } from 'react-icons/fa'
 
 export default function Review() {
-	return <h2>review component</h2>
-}
+	const [index, setIndex] = useState(0)
+	// accessing the person in the array by its index
+	const { name, job, image, text } = reviewsData[index]
 
-/*
-id: 1,
-		name: 'susan smith',
-		job: 'web developer',
-		image:
-			'https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883334/person-1_rfzshl.jpg',
-		text: "I'm baby meggings twee health goth +1. Bicycle rights tumeric chartreuse before they sold out chambray pop-up. Shaman humblebrag pickled coloring book salvia hoodie, cold-pressed four dollar toast everyday carry",
-  */
+	const viewPrevPerson = () => {}
+	const viewNextPerson = () => {}
+	const viewRandomPerson = () => {}
+
+	return (
+		<article className='review'>
+			<div className='img-container'>
+				<img className='person-img' src={image} alt={name} />
+				<span className='quote-icon'>
+					<FaQuoteRight />
+				</span>
+			</div>
+			<h4 className='author'>{name}</h4>
+			<p className='job'>{job}</p>
+			<p className='info'>{text}</p>
+			<div className='button-container'>
+				<button className='prev-btn'>
+					<FaChevronLeft />
+				</button>
+				<button className='next-btn'>
+					<FaChevronRight />
+				</button>
+			</div>
+			<button className='random-btn'>Surprise me</button>
+		</article>
+	)
+}
