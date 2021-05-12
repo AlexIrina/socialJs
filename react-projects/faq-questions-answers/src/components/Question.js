@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 
 export default function Question({ title, info }) {
-	const [readMore, setReadMore] = useState(false)
+	const [showInfo, setShowInfo] = useState(false)
 
 	return (
 		<article className='question'>
-			<h4>{title}</h4>
 			<header>
-				<p>{readMore ? info : `${info.substring(0, 0)}...`}</p>
-				<button onClick={() => setReadMore(!readMore)}>
-					{readMore ? <AiOutlineMinus /> : <AiOutlinePlus />}
+				<h4>{title}</h4>
+				<button onClick={() => setShowInfo(!showInfo)}>
+					{showInfo ? <AiOutlineMinus /> : <AiOutlinePlus />}
 				</button>
 			</header>
+			<p>{showInfo && info}</p>
 		</article>
 	)
 }
