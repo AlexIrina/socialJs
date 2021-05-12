@@ -4,18 +4,19 @@ import Categories from './components/Categories'
 import menuData from './data/menuData'
 
 export default function App() {
-	const [menu, setMenu] = useState(menuData)
-	const { categories } = menu
+	const [menuItems, setMenuItems] = useState(menuData)
+	const [categories, setCategories] = useState([])
+
 	return (
 		<main>
-			<Menu category={categories} />
-
-			<section className='container'>
-				{menu.map(item => (
-					<Categories key={item.id} {...item} />
-				))}
+			<section className='menu section'>
+				<div className='title'>
+					<h2>Our Menu</h2>
+					<div className='underline'></div>
+				</div>
+				<Categories categories={categories} />
+				<Menu items={menuItems} />
 			</section>
 		</main>
 	)
 }
-

@@ -1,16 +1,18 @@
-import React from 'react'
-
-export default function Menu() {
+export default function Menu({ items }) {
 	return (
-		<article className='menu'>
-			<h2 className='title'>Our Menu</h2>
-			<div className='underline'></div>
-			<div className='btn-container'>
-				<button className='filter-btn'>All</button>
-				<button className='filter-btn'>breakfast</button>
-				<button className='filter-btn'>lunch</button>
-				<button className='filter-btn'>shakes</button>
-			</div>
-		</article>
+		<div className='section-center'>
+			{items.map(({ img, title, desc, price, id }) => (
+				<article key={id} className='menu-item'>
+					<img className='photo' src={img} alt={title} />
+					<div className='item-info'>
+						<header>
+							<h4>{title}</h4>
+							<h4 className='price'>$ {price}</h4>
+						</header>
+						<p className='item-text'>{desc}</p>
+					</div>
+				</article>
+			))}
+		</div>
 	)
 }
