@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
-import { FaAngleDoubleRight } from 'react-icons/fa'
 import Loading from './Loading'
+import Header from './components/Header'
+import JobsInfo from './components/JobsInfo'
+import Button from './components/Button'
+import Footer from './components/Footer'
 
 export default function App() {
 	const url = 'https://course-api.com/react-tabs-project'
@@ -17,7 +20,7 @@ export default function App() {
 			setIsLoading(false)
 		} catch (error) {
 			setIsLoading(false)
-			console.log(error)
+			throw error
 		}
 	}
 	useEffect(() => {
@@ -28,40 +31,20 @@ export default function App() {
 	const { company, duties, dates, title } = jobs[value]
 
 	return (
-		<section className='section'>
-			<div className='title'>
-				<h2>experience</h2>
-				<div className='underline'></div>
-			</div>
+		<section>
+			<Header />
+
 			<div className='jobs-center'>
-				{/* btn container */}
-				<div className='btn-container'>
-					{jobs.map((item, index) => (
-						<button
-							key={item.id}
-							onClick={() => setValue(index)}
-							className={`job-btn ${index === value && 'active-btn'}`}
-						>
-							{item.company}
-						</button>
-					))}
-				</div>
-				{/* job info */}
-				<article className='job-info'>
-					<h3>{title}</h3>
-					<h4>{company}</h4>
-					<p className='job-date'>{dates}</p>
-					{duties.map((duty, index) => (
-						<div key={index} className='job-desc'>
-							<FaAngleDoubleRight className='job-icon'></FaAngleDoubleRight>
-							<p>{duty}</p>
-						</div>
-					))}
-				</article>
+				<Button jobs={jobs} value={value} setValue={setValue} />
+
+				<JobsInfo
+					company={company}
+					duties={duties}
+					dates={dates}
+					title={title}
+				/>
 			</div>
-			<button type='button' className='btn'>
-				more info
-			</button>
+			<Footer />
 		</section>
 	)
 }
