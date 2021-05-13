@@ -1,5 +1,5 @@
 import React from 'react'
-
+// add spinner icon
 export default function Loading() {
-	return <div className='loading'>Loading...</div>
+	return <section className='section loading'>Loading...</section>
 }
