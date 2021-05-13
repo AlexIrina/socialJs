@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
+import { FaAngleDoubleRight } from 'react-icons/fa'
+
 import Loading from './Loading'
 import Header from './components/Header'
-import JobsInfo from './components/JobsInfo'
-import Button from './components/Button'
 import Footer from './components/Footer'
 
 export default function App() {
@@ -31,18 +31,37 @@ export default function App() {
 	const { company, duties, dates, title } = jobs[value]
 
 	return (
-		<section>
+		<section className='section'>
 			<Header />
-
 			<div className='jobs-center'>
-				<Button jobs={jobs} value={value} setValue={setValue} />
-
-				<JobsInfo
-					company={company}
-					duties={duties}
-					dates={dates}
-					title={title}
-				/>
+				{/* btn container */}
+				<div className='btn-container'>
+					{jobs.map((item, index) => {
+						return (
+							<button
+								key={item.id}
+								onClick={() => setValue(index)}
+								className={`job-btn ${index === value && 'active-btn'}`}
+							>
+								{item.company}
+							</button>
+						)
+					})}
+				</div>
+				{/* job info */}
+				<article className='job-info'>
+					<h3>{title}</h3>
+					<h4>{company}</h4>
+					<p className='job-date'>{dates}</p>
+					{duties.map((duty, index) => {
+						return (
+							<div key={index} className='job-desc'>
+								<FaAngleDoubleRight className='job-icon'></FaAngleDoubleRight>
+								<p>{duty}</p>
+							</div>
+						)
+					})}
+				</article>
 			</div>
 			<Footer />
 		</section>
