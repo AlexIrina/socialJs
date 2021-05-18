@@ -4,7 +4,7 @@ import Alert from './components/Alert'
 export default function App() {
 	//form values
 	const [name, setName] = useState('')
-	// my list of todos
+	// my list of groceries
 	const [list, setList] = useState([])
 	// is editing or not
 	const [isEditing, setIsEditing] = useState(false)
@@ -13,12 +13,16 @@ export default function App() {
 	// different alerts..success and danger
 	const [alert, setAlert] = useState({
 		show: false,
-		msg: '',
 		type: '',
+		msg: '',
 	})
 	// show alerts
 	const showAlert = (show = false, type = '', msg = '') => {
 		setAlert({ show, type, msg })
+	}
+	const clearList = () => {
+		showAlert(true, 'danger', 'empty list')
+		setList([])
 	}
 
 	// handle submit for the form
@@ -32,6 +36,7 @@ export default function App() {
 			// todo: deal with edit
 		} else {
 			//!todo show alert
+			showAlert(true, 'success', 'item added to the list')
 			//!todo create a new item that will be added to the list
 			const newItem = {
 				id: new Date().getTime().toString(),
@@ -66,7 +71,9 @@ export default function App() {
 			{list.length > 0 && (
 				<div className='grocery-container'>
 					<List items={list} />
-					<button className='clear-btn'>Clear Items</button>
+					<button className='clear-btn' onClick={clearList}>
+						clear items
+					</button>
 				</div>
 			)}
 		</section>

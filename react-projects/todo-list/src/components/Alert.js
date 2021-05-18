@@ -7,7 +7,7 @@ export default function Alert({ type, msg, removeAlert }) {
 			removeAlert()
 			// cleanup func
 			return () => clearTimeout(timeout)
-		}, 2500)
+		}, 3000)
 	})
 
 	return <div className={`alert alert-${type}`}>{msg}</div>
