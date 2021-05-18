@@ -10,15 +10,24 @@ export default function App() {
 	const [isEditing, setIsEditing] = useState(false)
 	// edit ID..which item im editing
 	const [editID, setEditID] = useState(null)
-	// alert..for different alerts
-	const [alert, setAlert] = useState({ show: false, msg: '', type: '' })
+	// different alerts..success and danger
+	const [alert, setAlert] = useState({
+		show: false,
+		msg: '',
+		type: '',
+	})
 
 	// handle submit for the form
 	const handleSubmit = e => {
 		e.preventDefault()
 		// todo: add items to the list only if were not editing or theres something typed into the input field
 		if (!name) {
-			//todo: display alert
+			//todo: display alerts
+			setAlert({
+				show: true,
+				msg: 'please enter a value',
+				type: 'danger',
+			})
 		} else if (name && isEditing) {
 			// todo: deal with edit
 		} else {
@@ -37,7 +46,7 @@ export default function App() {
 		<section className='section-center'>
 			<form className='grocery-form' onSubmit={handleSubmit}>
 				{/* show different alerts to the user */}
-				{alert.show && <Alert />}
+				{alert.show && <Alert {...alert} />}
 				<h3>Grocery List</h3>
 				<div className='form-control'>
 					<input
