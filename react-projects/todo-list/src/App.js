@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import List from './components/List'
 import Alert from './components/Alert'
-
 export default function App() {
 	//form values
 	const [name, setName] = useState('')
@@ -17,19 +16,33 @@ export default function App() {
 	// handle submit for the form
 	const handleSubmit = e => {
 		e.preventDefault()
-		console.log('form submitted')
+		// todo: add items to the list only if were not editing or theres something typed into the input field
+		if (!name) {
+			//todo: display alert
+		} else if (name && isEditing) {
+			// todo: deal with edit
+		} else {
+			//!todo show alert
+			//!todo create a new item that will be added to the list
+			const newItem = {
+				id: new Date().getTime().toString(),
+				title: name,
+			}
+			setList([...list, newItem])
+			setName('')
+		}
 	}
 
 	return (
 		<section className='section-center'>
-			<form className='grocery-form ' onSubmit={handleSubmit}>
+			<form className='grocery-form' onSubmit={handleSubmit}>
 				{/* show different alerts to the user */}
 				{alert.show && <Alert />}
-				<h3>Todo List</h3>
+				<h3>Grocery List</h3>
 				<div className='form-control'>
 					<input
-						className='grocery'
 						type='text'
+						className='grocery'
 						placeholder='e.g. eggs'
 						value={name}
 						onChange={e => setName(e.target.value)}
@@ -40,12 +53,13 @@ export default function App() {
 					</button>
 				</div>
 			</form>
-			<div className='grocery-container'>
-				<List />
-				<button className='clear-btn' onClick={() => setList([])}>
-					Clear Items
-				</button>
-			</div>
+			{/*only show the list and the button if the user has added an item to the list */}
+			{list.length > 0 && (
+				<div className='grocery-container'>
+					<List items={list} />
+					<button className='clear-btn'>Clear Items</button>
+				</div>
+			)}
 		</section>
 	)
 }
