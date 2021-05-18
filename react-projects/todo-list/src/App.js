@@ -24,9 +24,21 @@ export default function App() {
 		<section className='section-center'>
 			<form className='grocery-form ' onSubmit={handleSubmit}>
 				{/* show different alerts to the user */}
-				{}
-				<input className='grocery' type='text' placeholder='e.g. eggs' />
-				<button className='submit-btn'>Submit</button>
+				{alert.show && <Alert />}
+				<h3>Todo List</h3>
+				<div className='form-control'>
+					<input
+						className='grocery'
+						type='text'
+						placeholder='e.g. eggs'
+						value={name}
+						onChange={e => setName(e.target.value)}
+					/>
+					<button type='submit' className='submit-btn'>
+						{/* show edit or submit btn */}
+						{isEditing ? 'edit' : 'submit'}
+					</button>
+				</div>
 			</form>
 			<div className='grocery-container'>
 				<List />
