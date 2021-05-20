@@ -34,11 +34,12 @@ export default function App() {
 
 	// edit items
 	const editItem = id => {
-		const newItem = list.find(item => item.id === id)
-		setName(newItem.title)
+		const specificItem = list.find(item => item.id === id)
 		setIsEditing(true)
-		showAlert(true, 'success', 'item changed')
-		console.log('edit clicked')
+		// id that im passing in
+		setEditID(id)
+		setName(specificItem.title)
+		showAlert(true, 'danger', 'please edit item')
 	}
 
 	// handle submit for the form
@@ -48,8 +49,28 @@ export default function App() {
 		if (!name) {
 			//todo: display alerts
 			showAlert(true, 'danger', 'Please enter a value')
+			// if item is currently selected and being edited
 		} else if (name && isEditing) {
-			// todo: deal with edit
+			// editID has the selected items id stored in it
+			// const itemBeingEdited = list.map(
+			// 	item =>
+			// 		item.id === editID && {
+			// 			...item,
+			// 			title: name,
+			// 		}
+			// )
+			const itemBeingEdited = list.map(item => {
+				if (item.id === editID) {
+					return {
+						...list,
+						title: name,
+					}
+				}
+				return item
+			})
+			setList(itemBeingEdited)
+			setName('')
+			showAlert(true, 'success', 'item changed')
 		} else {
 			//!todo show alert
 			showAlert(true, 'success', 'item added to the list')
