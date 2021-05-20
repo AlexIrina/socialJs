@@ -1,11 +1,24 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import List from './components/List'
 import Alert from './components/Alert'
+
+//todo: local storage
+const getLocalStorage = () => {
+	let list = localStorage.getItem('list')
+	// list exists?
+	if (list) {
+		return JSON.parse(localStorage.getItem('list'))
+	} else {
+		return []
+	}
+}
+getLocalStorage()
+
 export default function App() {
 	//form values
 	const [name, setName] = useState('')
 	// my list of groceries
-	const [list, setList] = useState([])
+	const [list, setList] = useState(getLocalStorage())
 	// is editing or not
 	const [isEditing, setIsEditing] = useState(false)
 	// edit ID..which item im editing
@@ -42,6 +55,15 @@ export default function App() {
 		showAlert(true, 'danger', 'please edit item')
 	}
 
+	//todo: store items in local storage
+	useEffect(() => {
+		// set
+		localStorage.setItem('list', JSON.stringify(list))
+		// // get
+		// localStorage.getItem('list')
+		// // remove
+		// localStorage.removeItem('list')
+	}, [list])
 	// handle submit for the form
 	const handleSubmit = e => {
 		e.preventDefault()
@@ -70,6 +92,8 @@ export default function App() {
 			})
 			setList(itemBeingEdited)
 			setName('')
+			setEditID(null)
+			setIsEditing(false)
 			showAlert(true, 'success', 'item changed')
 		} else {
 			//!todo show alert
@@ -94,12 +118,12 @@ export default function App() {
 					<input
 						type='text'
 						className='grocery'
-						placeholder='e.g. eggs'
+						placeholder='e.g. chocolate-chip cookies'
 						value={name}
 						onChange={e => setName(e.target.value)}
 					/>
 					<button type='submit' className='submit-btn'>
-						{/* show edit or submit btn */}
+						{/* show update or submit btn */}
 						{isEditing ? 'edit' : 'submit'}
 					</button>
 				</div>
@@ -116,4 +140,3 @@ export default function App() {
 		</section>
 	)
 }
-// using local storage

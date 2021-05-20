@@ -1,4 +1,4 @@
-import { FaEdit, FaTrash } from 'react-icons/fa'
+import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa'
 
 export default function List({ items, editItem, removeItem }) {
 	return (
