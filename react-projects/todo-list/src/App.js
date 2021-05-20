@@ -20,9 +20,25 @@ export default function App() {
 	const showAlert = (show = false, type = '', msg = '') => {
 		setAlert({ show, type, msg })
 	}
+	// clear the whole list
 	const clearList = () => {
 		showAlert(true, 'danger', 'empty list')
 		setList([])
+	}
+	//remove items
+	const removeItem = id => {
+		showAlert(true, 'danger', 'item removed')
+		const newItems = list.filter(item => item.id !== id)
+		setList(newItems)
+	}
+
+	// edit items
+	const editItem = id => {
+		const newItem = list.find(item => item.id === id)
+		setName(newItem.title)
+		setIsEditing(true)
+		showAlert(true, 'success', 'item changed')
+		console.log('edit clicked')
 	}
 
 	// handle submit for the form
@@ -51,7 +67,7 @@ export default function App() {
 		<section className='section-center'>
 			<form className='grocery-form' onSubmit={handleSubmit}>
 				{/* show different alerts to the user */}
-				{alert.show && <Alert {...alert} removeAlert={showAlert} />}
+				{alert.show && <Alert {...alert} removeAlert={showAlert} list={list} />}
 				<h3>Grocery List</h3>
 				<div className='form-control'>
 					<input
@@ -70,7 +86,7 @@ export default function App() {
 			{/*only show the list and the button if the user has added an item to the list */}
 			{list.length > 0 && (
 				<div className='grocery-container'>
-					<List items={list} />
+					<List items={list} removeItem={removeItem} editItem={editItem} />
 					<button className='clear-btn' onClick={clearList}>
 						clear items
 					</button>
