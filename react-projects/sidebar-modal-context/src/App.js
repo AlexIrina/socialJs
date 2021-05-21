@@ -4,7 +4,9 @@ import Sidebar from './components/Sidebar'
 export default function App() {
 	return (
 		<>
-			<h2>modal-sidebar project setup</h2>
+			<Home />
+			<Sidebar />
+			<Modal />
 		</>
 	)
 }
