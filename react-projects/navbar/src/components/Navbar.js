@@ -1,17 +1,25 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { FaBars, FaTwitter } from 'react-icons/fa'
+import { FaBars } from 'react-icons/fa'
 import { links, social } from '../data/linksData'
 import logo from '../logo.svg'
 export default function Navbar() {
-	// toggles links container
+	// toggles button
 	const [showLinks, setShowLinks] = useState(false)
-
-	// slows down the way links container toggles open
+	// refs
+	const linksContainer_Ref = useRef(null)
+	const links_Ref = useRef(null)
+	// every time the button is clicked run useEffect
 	useEffect(() => {
-		setTimeout(() => {
-			setShowLinks()
-		}, 3000)
-	}, [])
+		/* checks the height for the links..to add extra/less space to the 
+		linksContainer div depending on how many links there are
+		*/
+		const linksHeight = links_Ref.current.getBoundingClientRect().height
+		if (showLinks) {
+			linksContainer_Ref.current.style.height = `${linksHeight}px`
+		} else {
+			linksContainer_Ref.current.style.height = `0px`
+		}
+	}, [showLinks])
 
 	return (
 		<nav>
@@ -26,9 +34,8 @@ export default function Navbar() {
 						<FaBars />
 					</button>
 				</div>
-				{/* {showLinks && ( */}
-				<div className='links-container show-container'>
-					<ul className='links'>
+				<div className='links-container' ref={linksContainer_Ref}>
+					<ul className='links' ref={links_Ref}>
 						{links.map(({ id, url, text }) => (
 							<li key={id}>
 								<a href={url}>{text}</a>
@@ -36,7 +43,6 @@ export default function Navbar() {
 						))}
 					</ul>
 				</div>
-				{/* )} */}
 
 				<ul className='social-icons'>
 					{social.map(({ id, url, icon }) => (

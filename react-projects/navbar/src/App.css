@@ -205,6 +205,7 @@ nav {
 		display: none;
 	}
 	.links-container {
+		/*  !important must be added because im overriding height using useEffect and useRef*/
 		height: auto !important;
 	}
 	.links {
