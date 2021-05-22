@@ -4,8 +4,36 @@ const AppContext = React.createContext()
 
 // create the ContextProvider component that im going to wrap the App with
 function AppContextProvider({ children }) {
+	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+
+	// open/close modal
+	const openModal = () => {
+		setIsModalOpen(true)
+	}
+	const closeModal = () => {
+		setIsModalOpen(false)
+	}
+
+	// open/close sidebar
+	const openSidebar = () => {
+		setIsSidebarOpen(true)
+	}
+	const closeSidebar = () => {
+		setIsSidebarOpen(false)
+	}
+
 	return (
-		<AppContext.Provider value={'hello from context'}>
+		<AppContext.Provider
+			value={{
+				openModal,
+				closeModal,
+				openSidebar,
+				closeSidebar,
+				isSidebarOpen,
+				isModalOpen,
+			}}
+		>
 			{children}
 		</AppContext.Provider>
 	)

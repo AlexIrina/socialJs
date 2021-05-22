@@ -1,14 +1,18 @@
+import { useGlobalContext } from '../context/appContext'
 import logo from '../logo.svg'
 import { FaTimes } from 'react-icons/fa'
 import { social, links } from '../data/linksData'
+
 //!todo map over social, links and show the data
 export default function Sidebar() {
+	const { isSidebarOpen, closeSidebar } = useGlobalContext()
+
 	return (
 		// add the .show-sidebar to see the sidebar
-		<aside className={`sidebar `}>
+		<aside className={isSidebarOpen ? 'sidebar show-sidebar' : 'sidebar'}>
 			<div className='sidebar-header'>
 				<img src={logo} className='logo' alt='react logo' />
-				<button className='close-btn'>
+				<button className='close-btn' onClick={closeSidebar}>
 					<FaTimes />
 				</button>
 			</div>
