@@ -3,8 +3,7 @@ import { FaBars } from 'react-icons/fa'
 import { useGlobalContext } from '../context/appContext'
 
 export default function Navbar() {
-	const { openSidebar, closeSidebar, openSubmenu, closeSubmenu } =
-		useGlobalContext()
+	const { openSidebar, openSubmenu, closeSubmenu } = useGlobalContext()
 	const displaySubmenu = e => {
 		//get text of the link
 		const page = e.target.textContent
@@ -19,8 +18,14 @@ export default function Navbar() {
 		openSubmenu(page, { centerOfBtn, bottomOfBtn })
 	}
 
+	const hideSubmenu = e => {
+		if (!e.target.classList.contains('link-btn')) {
+			closeSubmenu()
+		}
+	}
+
 	return (
-		<nav className='nav'>
+		<nav className='nav' onMouseOver={hideSubmenu}>
 			<div className='nav-center'>
 				<div className='nav-header'>
 					<img src={logo} alt='stripe' className='nav-logo' />
