@@ -6,7 +6,8 @@ const AppContext = React.createContext()
 export const AppContextProvider = ({ children }) => {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 	const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
-	// used in submenu
+	const [page, setPage] = useState({ page: '', links: [] })
+
 	const [location, setLocation] = useState({})
 
 	const openSidebar = () => {
@@ -15,8 +16,12 @@ export const AppContextProvider = ({ children }) => {
 	const closeSidebar = () => {
 		setIsSidebarOpen(false)
 	}
-	// text of the link and coordinates are center and bottom position of the link btn
+	// text(developers,company, products) of the link and coordinates are center and bottom position of the link btn
 	const openSubmenu = (text, coordinates) => {
+		// find page that matches the page coming from the button
+		const page = sublinks.find(link => link.page === text)
+		// store the hovered data in state
+		setPage(page)
 		setLocation(coordinates)
 		setIsSubmenuOpen(true)
 	}
@@ -34,6 +39,7 @@ export const AppContextProvider = ({ children }) => {
 				openSubmenu,
 				closeSubmenu,
 				location,
+				page,
 			}}
 		>
 			{children}

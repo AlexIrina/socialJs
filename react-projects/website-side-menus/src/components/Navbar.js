@@ -10,7 +10,7 @@ export default function Navbar() {
 		const page = e.target.textContent
 		// get location of the link
 		const menuBtn = e.target.getBoundingClientRect()
-		console.log(menuBtn)
+		// console.log(menuBtn)
 		// get the center and botton of the links button ...---> left + right / 2 = middle
 		const centerOfBtn = (menuBtn.left + menuBtn.right) / 2
 		// bottom of the button plus lifting submenu by + 3 px
