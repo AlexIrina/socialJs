@@ -5,6 +5,19 @@ import { useGlobalContext } from '../context/appContext'
 export default function Navbar() {
 	const { openSidebar, closeSidebar, openSubmenu, closeSubmenu } =
 		useGlobalContext()
+	const displaySubmenu = e => {
+		//get text of the link
+		const page = e.target.textContent
+		// get location of the link
+		const menuBtn = e.target.getBoundingClientRect()
+		console.log(menuBtn)
+		// get the center and botton of the links button ...---> left + right / 2 = middle
+		const centerOfBtn = (menuBtn.left + menuBtn.right) / 2
+		// bottom of the button plus lifting submenu by + 3 px
+		const bottomOfBtn = menuBtn.bottom - 3
+		// pass page so i know which links to get
+		openSubmenu(page, { centerOfBtn, bottomOfBtn })
+	}
 
 	return (
 		<nav className='nav'>
@@ -17,13 +30,19 @@ export default function Navbar() {
 				</div>
 				<ul className='nav-links'>
 					<li>
-						<button className='link-btn'>products</button>
+						<button className='link-btn' onMouseOver={displaySubmenu}>
+							products
+						</button>
 					</li>
 					<li>
-						<button className='link-btn'>developers</button>
+						<button className='link-btn' onMouseOver={displaySubmenu}>
+							developers
+						</button>
 					</li>
 					<li>
-						<button className='link-btn'>company</button>
+						<button className='link-btn' onMouseOver={displaySubmenu}>
+							company
+						</button>
 					</li>
 				</ul>
 				<button className='btn signIn-btn'>Sign in</button>
