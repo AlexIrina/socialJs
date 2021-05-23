@@ -173,7 +173,7 @@ Stripe Styles
 .nav-links {
 	display: none;
 }
-.signin-btn {
+.signIn-btn {
 	display: none;
 }
 .hero::before {
@@ -226,7 +226,7 @@ Stripe Styles
 	.toggle-btn {
 		display: none;
 	}
-	.signin-btn {
+	.signIn-btn {
 		display: inline-block;
 	}
 	.nav-links {
