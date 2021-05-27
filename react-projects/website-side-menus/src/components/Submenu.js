@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
-import linksData from '../data/sublinksData'
 import { useGlobalContext } from '../context/appContext'
+
 export default function Submenu() {
 	const {
 		isSubmenuOpen,
@@ -50,11 +50,3 @@ export default function Submenu() {
 	)
 }
 
-// change the width of the submenu depending on how many links are in that submenu
-// display submenu when user hover over the buttons
-// close submenu when users mouse leaves the link
-// display only the sublinks that belong to that page
-// change the location of the submenu
-// get position of the button to place the submenu right under the button
-// change values of the Submenu depending on which bottom user hovers over
-// hide submenu when not hovering over it
