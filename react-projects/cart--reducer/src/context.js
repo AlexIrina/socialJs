@@ -13,13 +13,23 @@ const initialState = {
 const url = ''
 const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
-	const [state, dispath] = useReducer(reducer, initialState)
+	const [state, dispatch] = useReducer(reducer, initialState)
+
+	const clearCart = () => {
+		dispatch({ type: 'CLEAR_CART' })
+	}
+
+	const removeItem = id => {
+		dispatch({ type: 'REMOVE_ITEM', payload: id })
+	}
 
 	return (
 		<AppContext.Provider
 			value={{
 				// cartItems
 				...state,
+				clearCart,
+				removeItem,
 			}}
 		>
 			{children}
