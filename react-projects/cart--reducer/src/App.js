@@ -4,13 +4,10 @@ import CartContainer from './components/CartContainer'
 // items
 
 export default function App() {
-	// if (loading) {
-	//   return (
-	//     <div className='loading'>
-	//       <h1>Loading...</h1>
-	//     </div>
-	//   )
-	// }
+	const { loading } = useGlobalContext()
+	if (loading) {
+		return <div className='loading'></div>
+	}
 	return (
 		<main>
 			<Navbar />

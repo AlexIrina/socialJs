@@ -2,17 +2,24 @@ import React, { useState, useContext, useReducer, useEffect } from 'react'
 import cartItems from './data/itemsData'
 import reducer from './reducer'
 
+const initialState = {
+	loading: false,
+	cart: cartItems,
+	total: 0,
+	amount: 0,
+}
+
+// id, title, price, img
 const url = ''
 const AppContext = React.createContext()
-
 const AppProvider = ({ children }) => {
-	// id, title, price, img
-	const [cart, setCart] = useState(cartItems)
+	const [state, dispath] = useReducer(reducer, initialState)
 
 	return (
 		<AppContext.Provider
 			value={{
-				cart,
+				// cartItems
+				...state,
 			}}
 		>
 			{children}

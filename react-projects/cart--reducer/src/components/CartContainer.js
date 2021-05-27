@@ -2,7 +2,7 @@ import CartItem from './CartItem'
 import { useGlobalContext } from '../context'
 
 export default function CartContainer() {
-	const { cart } = useGlobalContext()
+	const { cart, total } = useGlobalContext()
 	if (cart.length === 0) {
 		return (
 			<section className='cart'>
@@ -32,7 +32,7 @@ export default function CartContainer() {
 				<hr />
 				<div className='cart-total'>
 					<h4>
-						total <span>$0.00</span>
+						total <span>${total}</span>
 					</h4>
 				</div>
 				<button
