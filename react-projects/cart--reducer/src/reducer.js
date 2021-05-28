@@ -1,3 +1,4 @@
+// I deal with dispatch actions here
 const reducer = (state, action) => {
 	if (action.type === 'CLEAR_CART') {
 		return {
@@ -44,18 +45,38 @@ const reducer = (state, action) => {
 					}
 				}
 				return cartItem
-				// if cartItem.amount <= 0 then remove item from the list
 			})
-			// todo: if less than one then remove the item from the cart
 			.filter(cartItem => cartItem.amount !== 0)
 		return {
 			...state,
 			cart: tempCart,
 		}
 	}
+	// get the totals for cart total amount and cart price  amount
+	if (action.type === 'GET_TOTALS') {
+		let { total, amount } = state.cart.reduce(
+			(cartTotal, cartItem) => {
+				const { price, amount } = cartItem
+				const itemTotal = price * amount
+				//! total amount of items in the cart (NAV)
+				cartTotal.amount += amount
+				//! total cost amount of all the items(Footer)
+				cartTotal.total += itemTotal
+
+				return cartTotal
+			},
+			{
+				total: 0,
+				amount: 0,
+			}
+		)
+		total = parseFloat(total.toFixed(2))
+		return { ...state, total, amount }
+	}
 
 	return state
 }
+
 export default reducer
 // const initialState = {
 // 	loading: false,
