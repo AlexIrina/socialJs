@@ -74,6 +74,24 @@ const reducer = (state, action) => {
 		return { ...state, total, amount }
 	}
 
+	// show loading spinner
+	if (action.type === 'LOADING') {
+		return {
+			...state,
+			loading: true,
+		}
+	}
+
+	// display the items from the API
+	if (action.type === 'DISPLAY_ITEMS') {
+		return {
+			...state,
+			// payload: cart
+			cart: action.payload,
+			loading: false,
+		}
+	}
+
 	return state
 }
 
