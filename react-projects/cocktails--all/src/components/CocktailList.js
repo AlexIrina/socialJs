@@ -4,7 +4,7 @@ import { useGlobalContext } from '../context'
 
 export default function CocktailList() {
 	const { cocktails, loading } = useGlobalContext()
-
+	console.log(cocktails)
 	if (loading) {
 		return <Loading />
 	}
