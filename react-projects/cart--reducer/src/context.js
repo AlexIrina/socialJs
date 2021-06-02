@@ -31,6 +31,12 @@ const AppProvider = ({ children }) => {
 	const decreaseAmount = id => {
 		dispatch({ type: 'DECREASE_AMOUNT', payload: id })
 	}
+
+	//toggle between increaseAmount and decreaseAmount
+	const toggleAmount = (id, type) => {
+		dispatch({ type: 'TOGGLE_AMOUNT', payload: { id, type } })
+	}
+
 	// fetch cart items from API
 	const fetchData = async () => {
 		dispatch({ type: 'LOADING' })
@@ -62,6 +68,7 @@ const AppProvider = ({ children }) => {
 				removeItem,
 				increaseAmount,
 				decreaseAmount,
+				toggleAmount,
 			}}
 		>
 			{children}

@@ -1,4 +1,5 @@
 // I deal with dispatch actions here
+// !clear cart
 const reducer = (state, action) => {
 	if (action.type === 'CLEAR_CART') {
 		return {
@@ -6,7 +7,7 @@ const reducer = (state, action) => {
 			cart: [],
 		}
 	}
-
+	// !remove item
 	if (action.type === 'REMOVE_ITEM') {
 		const newItems = state.cart.filter(
 			cartItem => cartItem.id !== action.payload
@@ -17,31 +18,60 @@ const reducer = (state, action) => {
 		}
 	}
 
-	// increase amount
-	if (action.type === 'INCREASE_AMOUNT') {
-		let tempCart = state.cart.map(cartItem => {
-			if (cartItem.id === action.payload) {
-				return {
-					...cartItem,
-					amount: cartItem.amount + 1,
-				}
-			}
-			return cartItem
-		})
+	// !increase amount
+	// if (action.type === 'INCREASE_AMOUNT') {
+	// 	let tempCart = state.cart.map(cartItem => {
+	// 		if (cartItem.id === action.payload) {
+	// 			return {
+	// 				...cartItem,
+	// 				amount: cartItem.amount + 1,
+	// 			}
+	// 		}
+	// 		return cartItem
+	// 	})
 
-		return {
-			...state,
-			cart: tempCart,
-		}
-	}
-	// decrease amount
-	if (action.type === 'DECREASE_AMOUNT') {
-		const tempCart = state.cart
+	// 	return {
+	// 		...state,
+	// 		cart: tempCart,
+	// 	}
+	// }
+	//! decrease amount
+	// if (action.type === 'DECREASE_AMOUNT') {
+	// 	const tempCart = state.cart
+	// 		.map(cartItem => {
+	// 			if (cartItem.id === action.payload) {
+	// 				return {
+	// 					...cartItem,
+	// 					amount: cartItem.amount - 1,
+	// 				}
+	// 			}
+	// 			return cartItem
+	// 		})
+	// 		.filter(cartItem => cartItem.amount !== 0)
+	// 	return {
+	// 		...state,
+	// 		cart: tempCart,
+	// 	}
+	// }
+
+	// toggle amount increase or decrease
+	if (action.type === 'TOGGLE_AMOUNT') {
+		let tempCart = state.cart
 			.map(cartItem => {
-				if (cartItem.id === action.payload) {
-					return {
-						...cartItem,
-						amount: cartItem.amount - 1,
+				// case 1: check if id match
+				if (cartItem.id === action.payload.id) {
+					// case 2: check if types match
+					if (action.payload.type === 'increase') {
+						return {
+							...cartItem,
+							amount: cartItem.amount + 1,
+						}
+					}
+					if (action.payload.type === 'decrease') {
+						return {
+							...cartItem,
+							amount: cartItem.amount - 1,
+						}
 					}
 				}
 				return cartItem
@@ -52,6 +82,7 @@ const reducer = (state, action) => {
 			cart: tempCart,
 		}
 	}
+
 	// get the totals for cart total amount and cart price  amount
 	if (action.type === 'GET_TOTALS') {
 		let { total, amount } = state.cart.reduce(
@@ -92,7 +123,7 @@ const reducer = (state, action) => {
 		}
 	}
 
-	return state
+	throw new Error(`No matching action type`)
 }
 
 export default reducer
