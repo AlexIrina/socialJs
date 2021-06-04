@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import logo from '../logo.svg'
+import logo from '../images/cocktail_logo.png'
+import ToggleBtn from './ToggleBtn'
 
 export default function Navbar() {
 	return (
@@ -15,6 +16,9 @@ export default function Navbar() {
 					</li>
 					<li>
 						<Link to='/about'>About</Link>
+					</li>
+					<li>
+						<ToggleBtn />
 					</li>
 				</ul>
 			</div>

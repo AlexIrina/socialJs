@@ -10,7 +10,7 @@ const AppProvider = ({ children }) => {
 	// !cocktailList component
 	const [cocktails, setCocktails] = useState([])
 	// fetch data
-	const fetchDrinks = async () => {
+	const fetchDrinks = useCallback(async () => {
 		// every time i type something in the input loading will show
 		setLoading(true)
 		try {
@@ -41,11 +41,11 @@ const AppProvider = ({ children }) => {
 			console.log(error)
 			setLoading(false)
 		}
-	}
+	}, [searchTerm])
 
 	useEffect(() => {
 		fetchDrinks()
-	}, [searchTerm])
+	}, [searchTerm, fetchDrinks])
 
 	return (
 		<AppContext.Provider
@@ -65,19 +65,3 @@ export const useGlobalContext = () => {
 }
 
 export { AppContext, AppProvider }
-
-// ​​data
-// idDrink: "15997"
-// strAlcoholic: "Optional alcohol"
-// strCategory: "Ordinary Drink"
-// strDrink: "GG"
-// strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/vyxwut1468875960.jpg"
-// strGlass: "Collins Glass"
-// strIngredient1: "Galliano"
-// strIngredient2: "Ginger ale"
-// strIngredient3: "Ice"
-// strInstructions: "Pour the Galliano liqueur over ice. Fill the remainder of the glass with ginger ale and thats all there is to it. You now have a your very own GG."
-// strInstructionsDE: "Den Galliano-Likör über Eis gießen. Füllen Sie den Rest des Glases mit Ginger Ale und das ist alles, was dazu gehört. Du hast jetzt ein eigenes GG."
-// strInstructionsIT: "Versare il liquore Galliano su ghiaccio.\r\nRiempi il resto del bicchiere con ginger ale e questo è tutto.\r\nOra hai il tuo GG personale."
-// ​​strMeasure1: "2 1/2 shots "
-// ​​
