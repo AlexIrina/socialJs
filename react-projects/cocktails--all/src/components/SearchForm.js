@@ -1,5 +1,7 @@
 import { useRef, useEffect } from 'react'
 import { useGlobalContext } from '../context'
+import leftCocktail from '../images/cocktail_left.png'
+import rightCocktail from '../images/cocktail_right.png'
 
 export default function SearchForm() {
 	const { setSearchTerm } = useGlobalContext()
@@ -19,17 +21,22 @@ export default function SearchForm() {
 	}, [])
 	return (
 		<section className='section search'>
+			<img src={leftCocktail} alt='left-cocktail' />
 			<form className='search-form' onSubmit={handleSubmit}>
 				<div className='form-control'>
-					<label htmlFor='name'>Search your favorite cocktail</label>
+					<label htmlFor='name' className='form-label'>
+						Search any cocktail
+					</label>
 					<input
 						type='text'
 						id='name'
 						ref={searchValues}
 						onChange={searchCocktail}
+						placeholder='Bloody Mary...'
 					/>
 				</div>
 			</form>
+			<img src={rightCocktail} alt='left-cocktail' />
 		</section>
 	)
 }

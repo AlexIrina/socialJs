@@ -6,12 +6,11 @@
 	box-sizing: border-box;
 }
 /* fonts */
-@import url('https://fonts.googleapis.com/css?family=Karla:400|Spectral:400');
+@import url('https://fonts.googleapis.com/css2?family=Varela&display=swap');
 
 html {
 	font-size: 100%;
-} /*16px*/
-
+}
 :root {
 	/* colors */
 	--primary-100: #e2e0ff;
@@ -97,8 +96,6 @@ html {
 	--primaryColor: #0f5132;
 }
 
-/*   form-control label  .navbar logo */
-
 body {
 	font-family: var(--bodyFont);
 	background: var(--clr-bcg);
@@ -165,14 +162,7 @@ small,
 	font-size: var(--smallText);
 }
 
-.img {
-	width: 100%;
-	display: block;
-	object-fit: cover;
-}
-
 /* form */
-
 .form {
 	width: 90vw;
 	max-width: var(--fixed-width);
@@ -209,7 +199,7 @@ small,
 	font-family: inherit;
 	color: var(--grey-400);
 }
-.form-alert {
+.alert {
 	color: var(--red-dark);
 	letter-spacing: var(--letterSpacing);
 	text-transform: capitalize;
@@ -295,6 +285,12 @@ Navbar
 }
 /* 
 ====== 
+Home
+======
+*/
+
+/* 
+====== 
 About
 ======
 */
@@ -376,13 +372,16 @@ Cocktail
 	border-top-left-radius: var(--mainBorderRadius);
 	border-top-right-radius: var(--mainBorderRadius);
 }
+/* label */
 .cocktail-footer {
 	padding: 1.5rem;
+	background: var(--clr-font);
+	text-align: center;
 }
-
+/* !change the color of the font on dark screen */
 .cocktail-footer h3,
 .cocktail-footer h4 {
-	color: black;
+	color: var(--clr-bcg);
 }
 
 .cocktail-footer h3,
@@ -394,7 +393,7 @@ Cocktail
 	font-size: 2rem;
 }
 .cocktail-footer p {
-	color: var(--primaryColor);
+	color: #ff7624;
 	margin-bottom: 0.5rem;
 }
 /* 
@@ -405,17 +404,20 @@ Form
 .search {
 	margin-top: 1rem;
 	padding-bottom: 0;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.light-theme {
-	--clr-bcg: #fff;
-	--clr-font: #282c35;
-	--primaryColor: #0f5132;
+.search img {
+	height: 150px;
+	width: 150px;
 }
 
 .search-form {
 	width: var(--smallWidth);
-	margin: 0 auto;
+	margin: 0;
 	max-width: var(--maxWidth);
 	background: var(--clr-bcg);
 	padding: 2rem 2.5rem;
@@ -430,6 +432,7 @@ Form
 	font-weight: bold;
 	letter-spacing: 0.25rem;
 	color: var(--clr-font);
+	text-align: center;
 }
 .form-control input {
 	width: 100%;
@@ -474,10 +477,10 @@ Cocktail
 	margin-right: 0.5rem;
 }
 .drink-data {
-	background: var(--primaryLightColor);
+	background: var(--clr-font);
 	padding: 0.25rem 0.5rem;
 	border-radius: var(--mainBorderRadius);
-	color: var(--primaryColor);
+	color: var(--clr-bcg);
 }
 .drink-info {
 	padding-top: 2rem;
@@ -555,3 +558,18 @@ Cocktail
 		height: 5em;
 	}
 }
+
+@media screen and (max-width: 500px) {
+	.search img {
+		display: none;
+	}
+	.nav-links .home {
+		display: none;
+	}
+}
+/* !todo: add more data about the drinks */
+/* !todo: change colors of btns on hover to match the opposite of the bcg */
+/* todo: make the cards come in one after the other */
+/* todo: hide cards when user did type anything in */
+/* todo: change spinner to a spinning cocktail */
+/* !todo: instead of names of Ingredients show images of bottles ..api call*/

@@ -11,7 +11,7 @@ export default function CocktailList() {
 	//! if search term doesn't match any of the cocktails
 	if (cocktails.length < 1) {
 		return (
-			<h2 className='section-title'>
+			<h2 className='section-title alert'>
 				no cocktails matched your search criteria
 			</h2>
 		)
