@@ -1,24 +1,32 @@
 import { Link } from 'react-router-dom'
-export default function Cocktail({ id, name, image, info, glass }) {
+export default function Cocktail({ id, name, image, info, glass, category }) {
 	function getClassByType(info) {
-		if (info === 'Alcoholic') {
-			return 'red'
-		} else if (info === 'Non alcoholic') {
-			return 'green'
-		} else if (info === 'Optional alcohol') {
-			return 'grey'
-		} else {
-			return 'pink'
-		}
+		if (info === 'Alcoholic') return '#e2e0ff'
+		if (info === 'Non alcoholic') return '#282566'
+		if (info === 'Optional alcohol') return '#c1beff'
+		return '#141233'
 	}
+
+	function getClassByCategory(category) {
+		if (category === 'Cocktail') return '#0f172a'
+		if (category === 'Shot') return '#1e293b'
+		if (category === 'Coffee / Tea ') return '#334155'
+		if (category === 'Ordinary Drink') return '#475569'
+		if (category === 'Other/Unknown') return '#64748b'
+		return '#94a3b8'
+	}
+
 	return (
 		<article className='cocktail'>
 			<div className='img-container'>
 				<img src={image} alt={name} />
 			</div>
-			{/* className={`${getClassByType(info)}`} */}
-			<div className='cocktail-footer'>
+			<div
+				className='cocktail-footer'
+				style={{ background: `${getClassByCategory(category)}` }}
+			>
 				<h3>{name}</h3>
+
 				<h4>{glass}</h4>
 				<p style={{ color: `${getClassByType(info)}` }}>{info}</p>
 				<Link to={`/cocktail/${id}`} className='btn btn-primary'>

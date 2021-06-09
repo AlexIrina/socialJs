@@ -4,7 +4,7 @@ import { useGlobalContext } from '../context'
 
 export default function CocktailList() {
 	const { cocktails, loading } = useGlobalContext()
-	console.log(cocktails)
+	// console.log(cocktails)
 	if (loading) {
 		return <Loading />
 	}
@@ -20,9 +20,7 @@ export default function CocktailList() {
 		return (
 			<section className='section'>
 				<h2 className='section-title'>Cocktails</h2>
-				{/* add underline */}
 				<div className='title-underline'></div>
-
 				<div className='cocktails-center'>
 					{cocktails.map(drink => {
 						return <Cocktail key={drink.id} {...drink} />

@@ -21,8 +21,15 @@ const AppProvider = ({ children }) => {
 			if (drinks) {
 				// map over the cocktails array
 				const newCocktails = drinks.map(item => {
-					const { idDrink, strDrink, strDrinkThumb, strAlcoholic, strGlass } =
-						item
+					// console.log(item)
+					const {
+						idDrink,
+						strDrink,
+						strDrinkThumb,
+						strAlcoholic,
+						strGlass,
+						strCategory,
+					} = item
 					return {
 						// rename properties
 						id: idDrink,
@@ -30,6 +37,7 @@ const AppProvider = ({ children }) => {
 						image: strDrinkThumb,
 						info: strAlcoholic,
 						glass: strGlass,
+						category: strCategory,
 					}
 				})
 				setCocktails(newCocktails)
@@ -60,7 +68,7 @@ const AppProvider = ({ children }) => {
 		</AppContext.Provider>
 	)
 }
-// make sure use
+
 export const useGlobalContext = () => {
 	return useContext(AppContext)
 }

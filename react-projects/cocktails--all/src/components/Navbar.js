@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import logo from '../images/cocktail_logo.png'
+
 import ToggleBtn from './ToggleBtn'
 
 export default function Navbar() {

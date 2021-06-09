@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
-// import { Link } from 'react-router-dom'
+import Icon from '@mdi/react'
+import { mdiWhiteBalanceSunny } from '@mdi/js'
+import { mdiWeatherNight } from '@mdi/js'
+
 export default function ToggleBtn() {
 	const [theme, setTheme] = useState('light-theme')
 
@@ -17,8 +20,18 @@ export default function ToggleBtn() {
 	}, [theme])
 
 	return (
-		<button className='btn' onClick={toggleTheme}>
-			{theme === 'dark-theme' ? 'Light' : 'Dark'}
-		</button>
+		<div>
+			<button className='btn btn-theme' onClick={toggleTheme}>
+				{/* {theme === 'dark-theme' ? 'Light' : 'Dark'} */}
+				<Icon
+					className='theme-svg'
+					path={theme === 'dark-theme' ? mdiWhiteBalanceSunny : mdiWeatherNight}
+					size={0.7}
+					horizontal
+					vertical
+					rotate={70}
+				/>
+			</button>
+		</div>
 	)
 }

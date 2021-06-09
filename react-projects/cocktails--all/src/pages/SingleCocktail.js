@@ -21,13 +21,14 @@ export default function SingleCocktail() {
 
 				if (drinks) {
 					// console.log(drinks)
-					// looking for the first item..changing the confusing naming
+					// changing the confusing naming in the first item
 					const {
 						strDrink: name,
 						strDrinkThumb: image,
 						strAlcoholic: info,
 						strCategory: category,
 						strGlass: glass,
+						// instructions
 						strInstructions: instructions,
 						strIngredient1: ingredient1,
 						strIngredient2: ingredient2,
@@ -110,6 +111,7 @@ export default function SingleCocktail() {
 				Back Home
 			</Link>
 			<h2 className='section-title'>{name}</h2>
+			<div className='title-underline'></div>
 			<div className='section-center'>
 				<div className='drink'>
 					<img src={image} alt={name} />
@@ -134,7 +136,7 @@ export default function SingleCocktail() {
 							<span className='drink-data'>ingredients:</span>
 							{/* some of the ingredients are null and i don't want to display them */}
 							{ingredients.map((ingredient, index) => {
-								// console.log(ingredient)
+								console.log(ingredient)
 								if (ingredient) {
 									return <span key={index}>{ingredient}</span>
 								} else {
@@ -145,8 +147,11 @@ export default function SingleCocktail() {
 						<p>
 							<span className='drink-data'>measurements:</span>
 							{measurements.map((measurement, index) => {
-								if (measurement) {
-									return <span key={index}>{measurement}</span>
+								if (measurements) {
+									const drinkMeasurements = ingredients.map(
+										item => `${measurement} of ${item}, `
+									)
+									return <span key={index}>{drinkMeasurements}</span>
 								} else {
 									return null
 								}
