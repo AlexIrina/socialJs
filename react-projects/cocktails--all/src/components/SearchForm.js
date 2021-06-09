@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { useGlobalContext } from '../context'
+import { AiOutlineSearch } from 'react-icons/ai'
 import leftCocktail from '../images/cocktail_left.png'
 import rightCocktail from '../images/cocktail_right.png'
 
@@ -19,6 +20,7 @@ export default function SearchForm() {
 	useEffect(() => {
 		searchValues.current.focus()
 	}, [])
+
 	return (
 		<section className='section search'>
 			<img src={leftCocktail} alt='left-cocktail' />
@@ -27,13 +29,16 @@ export default function SearchForm() {
 					<label htmlFor='name' className='form-label'>
 						Search any cocktail
 					</label>
-					<input
-						type='text'
-						id='name'
-						ref={searchValues}
-						onChange={searchCocktail}
-						placeholder='Bloody Mary...'
-					/>
+					<div className='search-container'>
+						<AiOutlineSearch size={30} />
+						<input
+							type='text'
+							id='inputID'
+							ref={searchValues}
+							onChange={searchCocktail}
+							placeholder='Bloody Mary ...'
+						/>
+					</div>
 				</div>
 			</form>
 			<img src={rightCocktail} alt='left-cocktail' />

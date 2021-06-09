@@ -8,7 +8,7 @@ export default function SingleCocktail() {
 	// !get the id of the cocktail
 	const { id } = useParams()
 	const [cocktail, setCocktail] = useState(null)
-	// console.log(cocktail)
+	console.log(cocktail)
 	const [loading, setLoading] = useState(false)
 	//TODO: which cocktail i actually clicked on. that data will come back
 	useEffect(() => {
@@ -18,7 +18,9 @@ export default function SingleCocktail() {
 				const response = await fetch(`${url}${id}`)
 				const data = await response.json()
 				const { drinks } = data
+
 				if (drinks) {
+					// console.log(drinks)
 					// looking for the first item..changing the confusing naming
 					const {
 						strDrink: name,
@@ -32,7 +34,14 @@ export default function SingleCocktail() {
 						strIngredient3: ingredient3,
 						strIngredient4: ingredient4,
 						strIngredient5: ingredient5,
+						// measurements
+						strMeasure1: measurement1,
+						strMeasure2: measurement2,
+						strMeasure3: measurement3,
+						strMeasure4: measurement4,
+						strMeasure5: measurement5,
 					} = drinks[0]
+
 					// storing cocktail ingredients with updated properties in this array
 					const ingredients = [
 						ingredient1,
@@ -41,6 +50,15 @@ export default function SingleCocktail() {
 						ingredient4,
 						ingredient5,
 					]
+					// measurements
+					const measurements = [
+						measurement1,
+						measurement2,
+						measurement3,
+						measurement4,
+						measurement5,
+					]
+
 					// cocktail with all the properties that i want to display
 					const newCocktail = {
 						name,
@@ -49,8 +67,9 @@ export default function SingleCocktail() {
 						category,
 						instructions,
 						glass,
-						// array
+						// arrays
 						ingredients,
+						measurements,
 					}
 					setCocktail(newCocktail)
 				} else {
@@ -70,12 +89,21 @@ export default function SingleCocktail() {
 	}
 	// if cocktail is null or does not exist
 	if (!cocktail) {
-		return <h2 className='section-title'>No cocktail to display</h2>
+		return <h2 className='section-title alert'>No cocktail to display</h2>
 	}
 
 	// get the properties that im going to be displaying
-	const { name, image, info, category, instructions, glass, ingredients } =
-		cocktail
+	const {
+		name,
+		image,
+		info,
+		category,
+		instructions,
+		glass,
+		ingredients,
+		measurements,
+	} = cocktail
+
 	return (
 		<section className='section cocktail-section'>
 			<Link to={'/'} className='btn btn-primary'>
@@ -95,7 +123,7 @@ export default function SingleCocktail() {
 							{category}
 						</p>
 						<p>
-							<span className='drink-data'>info:</span>
+							<span className={`drink-data`}>info:</span>
 							{info}
 						</p>
 						<p>
@@ -105,8 +133,23 @@ export default function SingleCocktail() {
 						<p>
 							<span className='drink-data'>ingredients:</span>
 							{/* some of the ingredients are null and i don't want to display them */}
-							{ingredients.map((item, index) => {
-								return item ? <span key={index}>{item}</span> : null
+							{ingredients.map((ingredient, index) => {
+								// console.log(ingredient)
+								if (ingredient) {
+									return <span key={index}>{ingredient}</span>
+								} else {
+									return null
+								}
+							})}
+						</p>
+						<p>
+							<span className='drink-data'>measurements:</span>
+							{measurements.map((measurement, index) => {
+								if (measurement) {
+									return <span key={index}>{measurement}</span>
+								} else {
+									return null
+								}
 							})}
 						</p>
 						<p>

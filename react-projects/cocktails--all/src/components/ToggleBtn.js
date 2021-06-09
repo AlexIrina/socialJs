@@ -17,10 +17,8 @@ export default function ToggleBtn() {
 	}, [theme])
 
 	return (
-		<div>
-			<button className='btn btn-toggle' onClick={toggleTheme}>
-				{theme === 'dark-theme' ? 'Light' : 'Dark'}
-			</button>
-		</div>
+		<button className='btn' onClick={toggleTheme}>
+			{theme === 'dark-theme' ? 'Light' : 'Dark'}
+		</button>
 	)
 }
