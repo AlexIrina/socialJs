@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom'
+// each cocktail card
 export default function Cocktail({ id, name, image, info, glass, category }) {
-	function getClassByType(info) {
+	// styling info text color
+	const getClassByType = info => {
 		if (info === 'Alcoholic') return '#e2e0ff'
 		if (info === 'Non alcoholic') return '#282566'
 		if (info === 'Optional alcohol') return '#c1beff'
 		return '#141233'
 	}
-
-	function getClassByCategory(category) {
+	// for styling the footer color based on category of the cocktail
+	const getClassByCategory = category => {
 		if (category === 'Cocktail') return '#0f172a'
 		if (category === 'Shot') return '#1e293b'
 		if (category === 'Coffee / Tea ') return '#334155'
@@ -26,7 +28,6 @@ export default function Cocktail({ id, name, image, info, glass, category }) {
 				style={{ background: `${getClassByCategory(category)}` }}
 			>
 				<h3>{name}</h3>
-
 				<h4>{glass}</h4>
 				<p style={{ color: `${getClassByType(info)}` }}>{info}</p>
 				<Link to={`/cocktail/${id}`} className='btn btn-primary'>
@@ -36,3 +37,4 @@ export default function Cocktail({ id, name, image, info, glass, category }) {
 		</article>
 	)
 }
+

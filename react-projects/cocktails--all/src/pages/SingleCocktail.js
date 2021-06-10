@@ -5,12 +5,14 @@ import Loading from '../components/Loading'
 const url = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='
 // after details button is clicked
 export default function SingleCocktail() {
-	// !get the id of the cocktail
+	// get the id of the cocktail
 	const { id } = useParams()
+	// console.log(id)
 	const [cocktail, setCocktail] = useState(null)
-	console.log(cocktail)
+	// console.log(cocktail)
 	const [loading, setLoading] = useState(false)
-	//TODO: which cocktail i actually clicked on. that data will come back
+	//which cocktail i actually clicked on. that data will come back
+
 	useEffect(() => {
 		setLoading(true)
 		async function getCocktail() {
@@ -101,15 +103,13 @@ export default function SingleCocktail() {
 		category,
 		instructions,
 		glass,
+		// arrays
 		ingredients,
 		measurements,
 	} = cocktail
 
 	return (
 		<section className='section cocktail-section'>
-			<Link to={'/'} className='btn btn-primary'>
-				Back Home
-			</Link>
 			<h2 className='section-title'>{name}</h2>
 			<div className='title-underline'></div>
 			<div className='section-center'>
@@ -136,8 +136,11 @@ export default function SingleCocktail() {
 							<span className='drink-data'>ingredients:</span>
 							{/* some of the ingredients are null and i don't want to display them */}
 							{ingredients.map((ingredient, index) => {
-								console.log(ingredient)
 								if (ingredient) {
+									// checking for last items index + 1
+									ingredients[index + 1] === null
+										? (ingredient = `${ingredients[index]}.`)
+										: (ingredient = `${ingredients[index]},`)
 									return <span key={index}>{ingredient}</span>
 								} else {
 									return null
@@ -146,12 +149,16 @@ export default function SingleCocktail() {
 						</p>
 						<p>
 							<span className='drink-data'>measurements:</span>
+							{/* some of the measurements are null and i don't want to display them */}
 							{measurements.map((measurement, index) => {
-								if (measurements) {
-									const drinkMeasurements = ingredients.map(
-										item => `${measurement} of ${item}, `
-									)
-									return <span key={index}>{drinkMeasurements}</span>
+								if (measurement) {
+									// checking for last items index + 1
+									measurements[index + 1] === null
+										? // adding a period
+										  (measurement += `of ${ingredients[index]}.`)
+										: // adding a comma
+										  (measurement += `of ${ingredients[index]},`)
+									return <span key={index}>{measurement}</span>
 								} else {
 									return null
 								}
@@ -164,6 +171,9 @@ export default function SingleCocktail() {
 					</div>
 				</div>
 			</div>
+			<Link to={'/'} className='btn btn-primary'>
+				Back Home
+			</Link>
 		</section>
 	)
 }

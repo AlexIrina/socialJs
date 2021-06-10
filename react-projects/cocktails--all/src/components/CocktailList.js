@@ -4,7 +4,7 @@ import { useGlobalContext } from '../context'
 
 export default function CocktailList() {
 	const { cocktails, loading } = useGlobalContext()
-	// console.log(cocktails)
+
 	if (loading) {
 		return <Loading />
 	}
@@ -30,3 +30,9 @@ export default function CocktailList() {
 		)
 	}
 }
+// 	category: "Ordinary Drink"
+// glass: "Cocktail glass"
+// id: "17187"
+// image: "https://www.thecocktaildb.com/images/media/drink/52weey1606772672.jpg"
+// info: "Alcoholic"
+// name: "Derby"

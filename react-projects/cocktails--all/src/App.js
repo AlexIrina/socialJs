@@ -12,18 +12,10 @@ export default function App() {
 		<Router>
 			<Navbar />
 			<Switch>
-				<Route exact path='/'>
-					<Home />
-				</Route>
-				<Route path='/about'>
-					<About />
-				</Route>
-				<Route path='/cocktail/:id'>
-					<SingleCocktail />
-				</Route>
-				<Route path='*'>
-					<Error />
-				</Route>
+				<Route exact path='/' component={Home}></Route>
+				<Route path='/about' component={About}></Route>
+				<Route path='/cocktail/:id' component={SingleCocktail}></Route>
+				<Route path='*' component={Error}></Route>
 			</Switch>
 		</Router>
 	)

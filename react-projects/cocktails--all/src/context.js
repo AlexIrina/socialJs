@@ -5,8 +5,8 @@ const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
 	const [loading, setLoading] = useState(true)
-	// !for the form. to get different cocktails..searchForm component
-	const [searchTerm, setSearchTerm] = useState('a')
+	// for the form to get different cocktails..searchForm component
+	const [searchTerm, setSearchTerm] = useState('b')
 	// !cocktailList component
 	const [cocktails, setCocktails] = useState([])
 	// fetch data
