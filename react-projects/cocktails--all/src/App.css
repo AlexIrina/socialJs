@@ -417,6 +417,12 @@ Cocktail
 	color: #ff7624;
 	margin-bottom: 0.5rem;
 }
+
+.cocktail-footer .btn:hover {
+	background: var(--clr-bcg);
+	color: var(--clr-font);
+	outline: 1px solid var(--clr-font);
+}
 /* 
 ====== 
 Form
@@ -481,6 +487,12 @@ Cocktail
 .cocktail-section {
 	text-align: center;
 }
+.cocktail-section .btn:hover {
+	background: var(--clr-bcg);
+	color: var(--clr-font);
+	outline: 1px solid var(--clr-font);
+}
+
 .drink {
 	width: var(--smallWidth);
 	max-width: var(--fullWidth);
@@ -509,6 +521,7 @@ Cocktail
 .drink-data:hover {
 	color: var(--clr-font);
 	background: var(--clr-bcg);
+	outline: 1px solid var(--clr-font);
 }
 
 .drink-info {

@@ -1,6 +1,14 @@
 import { Link } from 'react-router-dom'
+import { Howl, Howler } from 'howler'
+import clickSound from '../on2.wav'
 // each cocktail card
 export default function Cocktail({ id, name, image, info, glass, category }) {
+	const sound = new Howl({
+		src: [clickSound],
+	})
+	// Change global volume.
+	Howler.volume(0.1)
+
 	// styling info text color
 	const getClassByType = info => {
 		if (info === 'Alcoholic') return '#e2e0ff'
@@ -30,11 +38,14 @@ export default function Cocktail({ id, name, image, info, glass, category }) {
 				<h3>{name}</h3>
 				<h4>{glass}</h4>
 				<p style={{ color: `${getClassByType(info)}` }}>{info}</p>
-				<Link to={`/cocktail/${id}`} className='btn btn-primary'>
+				<Link
+					to={`/cocktail/${id}`}
+					className='btn btn-primary'
+					onClick={() => sound.play()}
+				>
 					Details
 				</Link>
 			</div>
 		</article>
 	)
 }
-

@@ -1,6 +1,15 @@
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { Howl, Howler } from 'howler'
+import clickSound from '../off.wav'
 import Loading from '../components/Loading'
+
+const sound = new Howl({
+	src: [clickSound],
+})
+
+// Change global volume.
+Howler.volume(0.1)
 
 const url = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='
 // after details button is clicked
@@ -155,9 +164,9 @@ export default function SingleCocktail() {
 									// checking for last items index + 1
 									measurements[index + 1] === null
 										? // adding a period
-										  (measurement += `of ${ingredients[index]}.`)
+										  (measurement += ` of ${ingredients[index]}.`)
 										: // adding a comma
-										  (measurement += `of ${ingredients[index]},`)
+										  (measurement += ` of ${ingredients[index]},`)
 									return <span key={index}>{measurement}</span>
 								} else {
 									return null
@@ -171,7 +180,7 @@ export default function SingleCocktail() {
 					</div>
 				</div>
 			</div>
-			<Link to={'/'} className='btn btn-primary'>
+			<Link to={'/'} className='btn btn-primary' onClick={() => sound.play()}>
 				Back Home
 			</Link>
 		</section>
